@@ -60,7 +60,7 @@ function addMarker(data){
     else if(data['How has the incident changed your perception of safety at UCLA?'] == "No, before and after the incident I feel unsafe at UCLA"){
         
         circleOptions.fillColor = "green"
-        notSafeEver.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>I no longer feel safe at UCLA/h2>`))
+        notSafeEver.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>I no longer feel safe at UCLA</h2>`))
         countnotSafeEver+=1;
        
        // createButtons(data.lat,data.lng,data['Where did this occur? Please be specific by providing the building name or dorm. If you need a map, please take a look at the map provided below. If you would prefer to go on the website itself, here is the link! https://map.ucla.edu/'])
@@ -137,7 +137,7 @@ function processData(results){
         
         console.log(data)
         addMarker(data)
-        addChart()
+        
         
         
     })
@@ -145,7 +145,7 @@ function processData(results){
     safe.addTo(map) // add our layers after markers have been made
     notSafe.addTo(map) // add our layers after markers have been made  
     notSafeEver.addTo(map)
-    
+    addChart()
 
     let allLayers = L.featureGroup([safe,notSafe,notSafeEver]);
     map.fitBounds(allLayers.getBounds());

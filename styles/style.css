@@ -32,7 +32,7 @@ header{
     grid-area: content;
     display: grid;
     grid-template-rows: 3fr 1fr; 
-    grid-template-areas: "buttonHome" "survey"
+    grid-template-areas: "survey"
 }
 
 #the_map{
@@ -49,7 +49,7 @@ header{
 #surveyButton{
     padding: 15px 32px;
     margin: 10px;
-    background-color: #56aaba;
+    background-color: #b4811c;
     cursor: pointer;
 }
 
@@ -58,8 +58,8 @@ header{
     text-decoration: none; 
 }
 
-#placeForButtons{
+/* #placeForButtons{
     grid-area: buttonHome;
     display:grid;
     grid-template-columns: repeat(2, 1fr);
-}
+} */
