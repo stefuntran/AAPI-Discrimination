@@ -12,6 +12,11 @@ header{
     align-self: center;
 }
 
+
+#chart{
+    height:10vh; 
+}
+
 #footer{
     grid-area: footer;
 }
