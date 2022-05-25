@@ -62,6 +62,8 @@ header{
 /* css for button to get rid of the underline */
 #surveyButton a{
     text-decoration: none; 
+    color: aliceblue;
+   font-style: oblique;
 }
 
 /* #placeForButtons{
