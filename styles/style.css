@@ -57,13 +57,15 @@ header{
     margin: 10px;
     background-color: #b4811c;
     cursor: pointer;
+
 }
 
 /* css for button to get rid of the underline */
 #surveyButton a{
-    text-decoration: none; 
     color: aliceblue;
-   font-style: oblique;
+    font-style: oblique;
+  
+
 }
 
 /* #placeForButtons{
