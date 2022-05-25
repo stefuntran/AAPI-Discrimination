@@ -25,17 +25,51 @@
 
         <div class="main">
             <div id="contents">
+<!-- Slideshow container -->
+                <div id="theSurvey">
+                    <div id="surveyButton">
+                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdaDnrzbzIcHLH3PL_1jEv05Xs1_ZDXptzOcUEGoTZPGGF-Hg/viewform">📝Take the survey</a>
+                    </div>
+                </div>
                 <div id="placeForButtons"></div>
+                
+                <div id = "slideshow">
+                    <div class="slideshow-container">
+
+                        <!-- Full-width slides/quotes -->
+                        <div class="mySlides">
+                        <q>I felt very sad. I did not expect this from a UCLA student</q>
+                        <p class="author">-Anonymous</p>
+                        </div>
+                                    
+                        <div class="mySlides">
+                                        <q>After this incident I felt very isolated from my friends and family.</q>
+                                        <p class="author">- -Anonymous</p>
+                                        </div>
+                                    
+                                        <div class="mySlides">
+                                        <q>I feel somewhat distressed, but I also do feel comfortable with continuing to go out and about with my everyday life.</q>
+                                        <p class="author">-Anonymous</p>
+                                        </div>
+                                    
+                                        <!-- Next/prev buttons -->
+                                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                                    </div>
+                                
+                                <!-- Dots/bullets/indicators -->
+                                    <div class="dot-container">
+                                        <span class="dot" onclick="currentSlide(1)"></span>
+                                        <span class="dot" onclick="currentSlide(2)"></span>
+                                        <span class="dot" onclick="currentSlide(3)"></span>
+                                    </div> 
+                 </div>
                 <!-- Be sure to use your own survey here!!!!!!! -->
 
                 <div class="chart-container" style="position: relative; height:50vh; width:25vw">
                     <canvas id="chart"></canvas>
               </div>
-                <div id="theSurvey">
-                    <div id="surveyButton">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdaDnrzbzIcHLH3PL_1jEv05Xs1_ZDXptzOcUEGoTZPGGF-Hg/viewform">📝Take the survey</a>
-                    </div>
-                </div>
+
 
             </div>
             <div id="the_map"></div>

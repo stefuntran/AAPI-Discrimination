@@ -1,17 +1,16 @@
 // declare variables
-let mapOptions = {'center': [34.0709,-118.444],'zoom':15};
+let mapOptions = {'center': [34.0709,-118.444],'zoom':12};
 
 
 const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSMt8H8_IxDwp7w2FodNYx_h4tXCUINMQoU0rlQiJhwHQK0hWUHWj9YM0Axo6lRoVZb9fde6A7RypjQ/pub?output=csv";
 
 const map = L.map('the_map').setView(mapOptions.center, mapOptions.zoom);
 
-let Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-    maxZoom: 16
+let Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
 });
 
-Esri_WorldGrayCanvas.addTo(map);
+Esri_WorldStreetMap.addTo(map);
 
 let safe = L.featureGroup();
 let notSafe = L.featureGroup();
@@ -45,6 +44,32 @@ L.control.layers(null,layers).addTo(map);
 //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 // }).addTo(map);
 
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+} 
 
 
 
