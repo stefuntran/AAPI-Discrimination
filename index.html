@@ -12,7 +12,7 @@
 
         <!-- Leaflet's JavaScript-->
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-        <script src="js/papaparse.min.js"></script>
+        <script src="libs/papaparse.min.js"></script>
 
          <!-- Chart.js -->
           <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
@@ -34,35 +34,36 @@
                 <div id="placeForButtons"></div>
                 
                 <div id = "slideshow">
-                    <div class="slideshow-container">
-
+                    <div id="slideArea"  class="slideshow-container" >
+                        
+<!--find better name for class ("slidecontent"), add an id to slidesho-->
                         <!-- Full-width slides/quotes -->
-                        <div class="mySlides">
-                        <q>I felt very sad. I did not expect this from a UCLA student</q>
-                        <p class="author">-Anonymous</p>
+                        <!-- <div class="mySlides">
+                            <q>I felt very sad. I did not expect this from a UCLA student</q>
+                            <p class="author">-Anonymous</p>
                         </div>
                                     
                         <div class="mySlides">
-                                        <q>After this incident I felt very isolated from my friends and family.</q>
-                                        <p class="author">- -Anonymous</p>
-                                        </div>
+                            <q>After this incident I felt very isolated from my friends and family.</q>
+                            <p class="author">- -Anonymous</p>
+                        </div>
                                     
-                                        <div class="mySlides">
-                                        <q>I feel somewhat distressed, but I also do feel comfortable with continuing to go out and about with my everyday life.</q>
-                                        <p class="author">-Anonymous</p>
-                                        </div>
-                                    
-                                        <!-- Next/prev buttons -->
-                                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                                    </div>
-                                
-                                <!-- Dots/bullets/indicators -->
-                                    <div class="dot-container">
-                                        <span class="dot" onclick="currentSlide(1)"></span>
-                                        <span class="dot" onclick="currentSlide(2)"></span>
-                                        <span class="dot" onclick="currentSlide(3)"></span>
-                                    </div> 
+                        <div class="mySlides">
+                            <q>I feel somewhat distressed, but I also do feel comfortable with continuing to go out and about with my everyday life.</q>
+                            <p class="author">-Anonymous</p>
+                        </div> -->
+                    
+                        <!-- Next/prev buttons -->
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                    </div>
+                
+                    <!-- Dots/bullets/indicators -->
+                    <div class="dot-container">
+                        <span class="dot" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                    </div> 
                  </div>
                 <!-- Be sure to use your own survey here!!!!!!! -->
 
