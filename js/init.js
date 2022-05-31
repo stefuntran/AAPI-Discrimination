@@ -1,17 +1,16 @@
 // declare variables
-let mapOptions = {'center': [34.0709,-118.444],'zoom':15};
+let mapOptions = {'center': [34.0709,-118.444],'zoom':12};
 
 
 const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSMt8H8_IxDwp7w2FodNYx_h4tXCUINMQoU0rlQiJhwHQK0hWUHWj9YM0Axo6lRoVZb9fde6A7RypjQ/pub?output=csv";
 
 const map = L.map('the_map').setView(mapOptions.center, mapOptions.zoom);
 
-let Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-    maxZoom: 16
+let Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
 });
-
-Esri_WorldGrayCanvas.addTo(map);
+//go to adobe, get three dif colors
+Esri_WorldStreetMap.addTo(map);
 
 let safe = L.featureGroup();
 let notSafe = L.featureGroup();
@@ -21,6 +20,18 @@ let notSafeEver = L.featureGroup();
 let countSafe = 0;
 let countnotSafe = 0;
 let countnotSafeEver = 0;
+
+
+
+let globalColors = { 
+    "safeColor" : "#B34736", //can have hex code
+    "stillUnsafe" : "#FF7B66",
+    "nowUnsafe" : "#3865B3"
+}
+
+// let safeColor = "green";
+// let stillUnsafe = "red";
+// let nowUnsafe = "purple";
 
 let layers = {
     "Still feel safe at UCLA": safe,
@@ -49,17 +60,27 @@ L.control.layers(null,layers).addTo(map);
 
 
 function addMarker(data){
-    if(data['How has the incident changed your perception of safety at UCLA?'] == "No, I still feel safe at UCLA"){
+    let UserPerceptionPasser = data['How has the incident changed your perception of safety at UCLA?']
+    let UserFeelingPasser =  data['How do you feel after the incident? Feel free to share any feelings or emotions.  We would like to reiterate that this form is completely anonymous and will not be traced back to you. '] 
+    let PerceptionColor = getPerceptionColor(UserPerceptionPasser);
+    circleOptions.fillColor = PerceptionColor;
+    console.log(circleOptions.fillColor)
+
+    if (UserFeelingPasser.length <= 2){
+        UserFeelingPasser = "No response";
+    }
+
+    if( UserPerceptionPasser == "No, I still feel safe at UCLA"){
         
-        circleOptions.fillColor = "red"
+        // circleOptions.fillColor = getPerceptionColor(UserPerceptionPasser)
         safe.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>No, I still feel safe at UCLA</h2>`))
         countSafe += 1;
 
        // createButtons(data.lat,data.lng,data['Where did this occur? Please be specific by providing the building name or dorm. If you need a map, please take a look at the map provided below. If you would prefer to go on the website itself, here is the link! https://map.ucla.edu/'])
         }
-    else if(data['How has the incident changed your perception of safety at UCLA?'] == "No, before and after the incident I feel unsafe at UCLA"){
+    else if(UserPerceptionPasser  == "No, before and after the incident I feel unsafe at UCLA"){
         
-        circleOptions.fillColor = "green"
+        // circleOptions.fillColor = getPerceptionColor(UserPerceptionPasser)
         notSafeEver.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>I no longer feel safe at UCLA</h2>`))
         countnotSafeEver+=1;
        
@@ -68,15 +89,14 @@ function addMarker(data){
     }
     else{
         
-        circleOptions.fillColor = "blue"  
+        // circleOptions.fillColor = "blue"  
         notSafe.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>No, before and after the incident I feel unsafe at UCLA</h2>`))
         countnotSafe +=1;
      //   createButtons(data.lat,data.lng,data['Where did this occur? Please be specific by providing the building name or dorm. If you need a map, please take a look at the map provided below. If you would prefer to go on the website itself, here is the link! https://map.ucla.edu/'])
     }
+    addslides(data.lat,data.lng, UserFeelingPasser, PerceptionColor)
     return data
 };
-
-
 
 function createButtons(lat,lng,title){
     const newButton = document.createElement("button"); // adds a new button
@@ -91,8 +111,45 @@ function createButtons(lat,lng,title){
     spaceForButtons.appendChild(newButton);//this adds the button to our page.
 };
 
+//create similar function for slideshow 
+function addslides(lat, lng, UserFeelings, UserPerceptionColor ){
+    const newSlide = document.createElement("div"); // adds a new slide, creating the div
+    let slideClass = "mySlides";
+    // let slideColor = getPerceptionColor(UserPerception);
+    newSlide.style.backgroundColor = UserPerceptionColor;
+    newSlide.id = "button"+UserFeelings; // gives the button a unique id
+    newSlide.innerHTML = UserFeelings; // gives the button a title
+    newSlide.setAttribute("lat",lat); // sets the latitude 
+    newSlide.setAttribute("lng",lng); // sets the longitude 
+    newSlide.className = slideClass; //change slideClass either here or top (variable declaration)
+    newSlide.addEventListener('click', function(){
+        map.flyTo([lat,lng]); //this is the flyTo from Leaflet
+    })
 
 
+    const slideArea = document.getElementById('slideArea')
+    slideArea.appendChild(newSlide);//this adds the slide to our page.
+//prepend 
+};
+
+function getPerceptionColor(UserPerception){
+    
+    let slideColor;
+    
+    switch(UserPerception) { //(helper function) can turn into function... 
+        case "No, I still feel safe at UCLA.": //will continuosly refer to 
+            slideColor = globalColors.safeColor; //assign class, change only once
+            return slideColor
+        case "Yes, I no longer feel safe at UCLA due to the incident.":
+            slideColor = globalColors.stillUnsafe;
+            return slideColor
+        case "No, before and after the incident I feel unsafe at UCLA":
+            slideColor = globalColors.nowUnsafe
+            return slideColor
+        
+    }
+    console.log(UserPerception)
+}
 function addChart(){
     // create the new chart here, target the id in the html called "chart"
     new Chart(document.getElementById("chart"), {
@@ -103,7 +160,7 @@ function addChart(){
         datasets: [
             {
             label: "Count",
-            backgroundColor: ["green", "red", "blue"],
+            backgroundColor: [globalColors.safeColor, globalColors.stillUnsafe, globalColors.nowUnsafe],
             data: [countSafe,countnotSafe,countnotSafeEver]
             }
         ]
@@ -135,7 +192,7 @@ function processData(results){
    
     results.data.forEach(data => {
         
-        console.log(data)
+        // console.log(data)
         addMarker(data)
         
         
@@ -149,7 +206,41 @@ function processData(results){
 
     let allLayers = L.featureGroup([safe,notSafe,notSafeEver]);
     map.fitBounds(allLayers.getBounds());
+    showSlides(slideIndex);//slide added 
 };
 
 
+//
+
 loadData(dataUrl)
+
+var slideIndex = 1;
+
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+} 
+
+// Creating window object
+var win =  L.control.window(map,{title:'Welcome to Chinese Discriminaion Map',content:'This is my first control window.'})
+           .show()
