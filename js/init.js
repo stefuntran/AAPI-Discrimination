@@ -12,9 +12,9 @@ let Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/re
 //go to adobe, get three dif colors
 Esri_WorldStreetMap.addTo(map);
 
-let safe = L.featureGroup();
-let notSafe = L.featureGroup();
-let notSafeEver = L.featureGroup();
+let safe = L.markerClusterGroup();
+let notSafe = L.markerClusterGroup();
+let notSafeEver = L.markerClusterGroup();
 
 //adding variables to keep track of count for chart
 let countSafe = 0;
