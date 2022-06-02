@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html>
     <head>
+        
         <title>Chinese Discrimination at UCLA</title>
         <!-- hint: remember to change your page title! -->
         <meta charset="utf-8" />
         <link rel="shortcut icon" href="#">
         <link rel="stylesheet" href="styles/style.css">
+      
+        
 
         <!-- Leaflet's css-->
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+        <link rel="stylesheet" href="styles/L.Control.Window.css"/>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
 
         <!-- Leaflet's JavaScript-->
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
         <script src="libs/papaparse.min.js"></script>
+        <script src="js/L.Control.Window.js"></script>
+        <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 
          <!-- Chart.js -->
           <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
     </head>
 
     <body>
+       
         <header>
+          
             Chinese Discrimination at UCLA
         </header>
 
         <div class="main">
+          
             <div id="contents">
 <!-- Slideshow container -->
                 <div id="theSurvey">
@@ -70,6 +80,7 @@
                 <div class="chart-container" style="position: relative; height:50vh; width:25vw">
                     <canvas id="chart"></canvas>
               </div>
+
 
 
             </div>

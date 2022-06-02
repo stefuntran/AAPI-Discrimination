@@ -1,3 +1,4 @@
+
 // declare variables
 let mapOptions = {'center': [34.0709,-118.444],'zoom':12};
 
@@ -12,9 +13,11 @@ let Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/re
 //go to adobe, get three dif colors
 Esri_WorldStreetMap.addTo(map);
 
-let safe = L.featureGroup();
-let notSafe = L.featureGroup();
-let notSafeEver = L.featureGroup();
+
+//add a marker on to the lat lng area that is associated with slideshow
+let safe = L.markerClusterGroup();
+let notSafe = L.markerClusterGroup();
+let notSafeEver = L.markerClusterGroup();
 
 //adding variables to keep track of count for chart
 let countSafe = 0;
@@ -36,7 +39,8 @@ let globalColors = {
 let layers = {
     "Still feel safe at UCLA": safe,
     "Before and After, I feel unsafe": notSafe,
-    "No longer feel safe":notSafeEver
+    "No longer feel safe":notSafeEver,
+    // "temp":temp
 };
 
 let circleOptions = {
@@ -48,6 +52,7 @@ let circleOptions = {
     fillOpacity: 0.3
 };
 
+let templayer;
 
 // add layer control box
 L.control.layers(null,layers).addTo(map);
@@ -57,9 +62,38 @@ L.control.layers(null,layers).addTo(map);
 // }).addTo(map);
 
 
+function addSlideMarker(data){
+    
+    
+    if (L.addLayer(null) = True){
+        L.addLayer(null).addTo(map);
+        templayer.addLayer(circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>No, I still feel safe at UCLA</h2>`)).addTo(map);
+        map.flyTo([data.lat,data.lng]);
+        //zoom in to the marker
+    }
+    else{
+        map.removeLayer(templayer)
+        tempplayer = null;
+        templayer.addLayer(circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>No, I still feel safe at UCLA</h2>`)).addTo(map);
+        map.flyTo([data.lat,data.lng]);
+        //remove current Circle Marker
+        //add marker
+        //zoom in to the marker
+        
+    }
+}
+
+//step 1: create new layer (temp marker layer)
+//step 2 if not first time clean (empty) then add, if first time then add 
+//step 3: add new marker to temp marker layer (similar syntax : L.circleMarker([data.lat,data.lng],circleOptions))
+
 
 
 function addMarker(data){
+
+//get if statement to work
+
+    //add marker to map then remove marker if it already exists
     let UserPerceptionPasser = data['How has the incident changed your perception of safety at UCLA?']
     let UserFeelingPasser =  data['How do you feel after the incident? Feel free to share any feelings or emotions.  We would like to reiterate that this form is completely anonymous and will not be traced back to you. '] 
     let PerceptionColor = getPerceptionColor(UserPerceptionPasser);
@@ -95,6 +129,8 @@ function addMarker(data){
      //   createButtons(data.lat,data.lng,data['Where did this occur? Please be specific by providing the building name or dorm. If you need a map, please take a look at the map provided below. If you would prefer to go on the website itself, here is the link! https://map.ucla.edu/'])
     }
     addslides(data.lat,data.lng, UserFeelingPasser, PerceptionColor)
+
+
     return data
 };
 
@@ -222,21 +258,32 @@ function plusSlides(n) {
 }
 
 function currentSlide(n) {
+   
   showSlides(slideIndex = n);
+  
 }
 
 function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("mySlides");
   var dots = document.getElementsByClassName("dot");
+  
   if (n > slides.length) {slideIndex = 1}
+   
     if (n < 1) {slideIndex = slides.length}
     for (i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
     }
     for (i = 0; i < dots.length; i++) {
       dots[i].className = dots[i].className.replace(" active", "");
+
     }
+
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
+  addSlideMarker()
 } 
+//test
+// Creating window object
+var win =  L.control.window(map,{title:'Welcome to Chinese Discriminaion Map',content:'This is my first control window.'})
+           .show()
