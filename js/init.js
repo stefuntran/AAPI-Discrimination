@@ -13,8 +13,6 @@ let Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/re
 //go to adobe, get three dif colors
 Esri_WorldStreetMap.addTo(map);
 
-
-//add a marker on to the lat lng area that is associated with slideshow
 let safe = L.markerClusterGroup();
 let notSafe = L.markerClusterGroup();
 let notSafeEver = L.markerClusterGroup();
@@ -285,5 +283,4 @@ function showSlides(n) {
 } 
 //test
 // Creating window object
-var win =  L.control.window(map,{title:'Welcome to Chinese Discriminaion Map',content:'This is my first control window.'})
-           .show()
+var win =  L.control.window(map,{title:'Welcome to Chinese Discriminaion Map',content:'This is my first control window.'}).show()
