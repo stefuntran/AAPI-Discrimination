@@ -3,7 +3,7 @@
 let mapOptions = {'center': [34.0709,-118.444],'zoom':12};
 
 
-const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSMt8H8_IxDwp7w2FodNYx_h4tXCUINMQoU0rlQiJhwHQK0hWUHWj9YM0Axo6lRoVZb9fde6A7RypjQ/pub?output=csv";
+const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlkin3Dn1TCTm5XgCqwLjV5VMMuC_578Sbe26vQYTZfwsbVNZ9TlM8tWLRh9EQVgxsk85oyKN21yOZ/pub?output=csv";
 
 const map = L.map('the_map').setView(mapOptions.center, mapOptions.zoom);
 
@@ -25,9 +25,9 @@ let countnotSafeEver = 0;
 
 
 let globalColors = { 
-    "safeColor" : "#B34736", //can have hex code
+    "safeColor" : "#3865B3", //can have hex code
     "stillUnsafe" : "#FF7B66",
-    "nowUnsafe" : "#3865B3"
+    "nowUnsafe" : "#B34736"
 }
 
 // let safeColor = "green";
@@ -35,10 +35,10 @@ let globalColors = {
 // let nowUnsafe = "purple";
 
 let layers = {
-    "Still feel safe at UCLA": safe,
-    "Before and After, I feel unsafe": notSafe,
-    "No longer feel safe":notSafeEver,
-    // "temp":temp
+    "Still feel safe at UCLA <svg height='10' width='10'><circle cx='5' cy='5' r='4' stroke='#3865B3' stroke-width='1' fill= '#3865B3'/></svg>": safe,
+    "Before and After, I feel unsafe <svg height='10' width='10'><circle cx='5' cy='5' r='4' stroke='#FF7B66' stroke-width='1' fill= '#FF7B66'/></svg>": notSafe,
+    "No longer feel safe <svg height='10' width='10'><circle cx='5' cy='5' r='4' stroke='#B34736' stroke-width='1' fill= '#B34736'/></svg>":notSafeEver,
+
 };
 
 let circleOptions = {
@@ -47,13 +47,14 @@ let circleOptions = {
     color: "#000",
     weight: 1,
     opacity: 1,
-    fillOpacity: 0.3
+    fillOpacity: 0.7
 };
+
 
 let templayer;
 
 // add layer control box
-L.control.layers(null,layers).addTo(map);
+L.control.layers(null,layers,{collapsed:false}).addTo(map)
 
 // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -102,10 +103,10 @@ function addMarker(data){
         UserFeelingPasser = "No response";
     }
 
-    if( UserPerceptionPasser == "No, I still feel safe at UCLA"){
+    if( UserPerceptionPasser == "No, I still feel safe at UCLA."){
         
         // circleOptions.fillColor = getPerceptionColor(UserPerceptionPasser)
-        safe.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>No, I still feel safe at UCLA</h2>`))
+        safe.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data['Please feel free to describe what happened if you feel comfortable doing so. Feel free to go into as much detail as you wish.']}</h2> <h3>${data['How do you feel after the incident? Feel free to share any feelings or emotions.  We would like to reiterate that this form is completely anonymous and will not be traced back to you. ']}</h3>`))
         countSafe += 1;
 
        // createButtons(data.lat,data.lng,data['Where did this occur? Please be specific by providing the building name or dorm. If you need a map, please take a look at the map provided below. If you would prefer to go on the website itself, here is the link! https://map.ucla.edu/'])
@@ -113,7 +114,7 @@ function addMarker(data){
     else if(UserPerceptionPasser  == "No, before and after the incident I feel unsafe at UCLA"){
         
         // circleOptions.fillColor = getPerceptionColor(UserPerceptionPasser)
-        notSafeEver.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>I no longer feel safe at UCLA</h2>`))
+        notSafeEver.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data['Please feel free to describe what happened if you feel comfortable doing so. Feel free to go into as much detail as you wish.']}</h2> <h3>${data['How do you feel after the incident? Feel free to share any feelings or emotions.  We would like to reiterate that this form is completely anonymous and will not be traced back to you. ']}</h3>`))
         countnotSafeEver+=1;
        
        // createButtons(data.lat,data.lng,data['Where did this occur? Please be specific by providing the building name or dorm. If you need a map, please take a look at the map provided below. If you would prefer to go on the website itself, here is the link! https://map.ucla.edu/'])
@@ -122,7 +123,7 @@ function addMarker(data){
     else{
         
         // circleOptions.fillColor = "blue"  
-        notSafe.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>No, before and after the incident I feel unsafe at UCLA</h2>`))
+        notSafeEver.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data['Please feel free to describe what happened if you feel comfortable doing so. Feel free to go into as much detail as you wish.']}</h2> <h3>${data['How do you feel after the incident? Feel free to share any feelings or emotions.  We would like to reiterate that this form is completely anonymous and will not be traced back to you. ']}</h3>`))
         countnotSafe +=1;
      //   createButtons(data.lat,data.lng,data['Where did this occur? Please be specific by providing the building name or dorm. If you need a map, please take a look at the map provided below. If you would prefer to go on the website itself, here is the link! https://map.ucla.edu/'])
     }
@@ -238,7 +239,7 @@ function processData(results){
     notSafeEver.addTo(map)
     addChart()
 
-    let allLayers = L.featureGroup([safe,notSafe,notSafeEver]);
+    let allLayers = L.featureGroup([safe,notSafeEver,notSafe]);
     map.fitBounds(allLayers.getBounds());
     showSlides(slideIndex);//slide added 
 };
