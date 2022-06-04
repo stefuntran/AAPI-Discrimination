@@ -22,8 +22,6 @@ let countSafe = 0;
 let countnotSafe = 0;
 let countnotSafeEver = 0;
 
-
-
 let globalColors = { 
     "safeColor" : "#3865B3", //can have hex code
     "stillUnsafe" : "#FF7B66",

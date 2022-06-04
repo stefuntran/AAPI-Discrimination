@@ -12,94 +12,16 @@ header{
   align-self: center;
 }
 
-
-#chart{
-    height:10vh; 
-    grid-area: chart;
-}
-
 #footer{
     grid-area: footer;
   }
   
-  .main{
-    grid-area: main_content;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "main_map content";
-    display: grid;
-  }
-  
-  /* #theSurvey{
-    grid-area: survey;
-   
-    justify-self: center; /* added this to center the button in the div */
-  
-  #contents{
-      grid-area: content;
-      display: grid;
-      grid-template-rows: 3fr 5fr; 
-      grid-template-areas: "slideshow" "survey"
-  }
-  
-  #the_map{
-    height:80vh;
-    
-    grid-area: main_map;
-  }
-  
-  
-  
-  
-  /* css for the button */
-  #surveyButton{
-    
-      padding: 15px 32px;
-      margin: 10px;
-      background-color: #b4811c;
-      cursor: pointer;
-  }
-  
-  /* css for button to get rid of the underline */
-  #surveyButton a{
-    color: aliceblue;
-    font-style: oblique;
-  
-
-}
-
-/* #placeForButtons{
-    grid-area: buttonHome;
-    display:grid;
-    grid-template-columns: repeat(2, 1fr);
-} */
-
-
-#chart{
-    height:10vh; 
-}
-
-#footer{
-  grid-area: footer;
-}
-
-.main{
-  grid-area: main_content;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "main_map content";
-  display: grid;
-}
 
 /* #theSurvey{
   grid-area: survey;
- 
+  
   justify-self: center; /* added this to center the button in the div */
 
-#contents{
-    grid-area: content;
-    display: grid;
-    grid-template-rows: 3fr 5fr; 
-    grid-template-areas: "slideshow" "survey"
-}
 
 #the_map{
   height:80vh;
@@ -113,6 +35,7 @@ header{
 /* css for the button */
 #surveyButton{
   
+    
     padding: 15px 32px;
     margin: 10px;
     background-color: #b4811c;
@@ -121,6 +44,7 @@ header{
 
 /* css for button to get rid of the underline */
 #surveyButton a{
+
   color: aliceblue;
   font-style: oblique;
 
@@ -134,77 +58,142 @@ header{
 } */
 
 
-#slideshow {
-    grid-area: slideshow;
+
+
+#footer{
+grid-area: footer;
+}
+
+.main{
+grid-area: main_content;
+grid-template-columns: 1fr 1fr;
+grid-template-areas: "main_map content";
+display: grid;
+}
+
+/* #theSurvey{
+grid-area: survey;
+
+justify-self: center; /* added this to center the button in the div */
+
+#contents{
+  grid-area: content;
+  display: grid;
+  grid-template-rows: 3fr 5fr; 
+  grid-template-areas:  "slideshow" "chart-container" "survey"
+}
+
+#the_map{
+height:80vh;
+
+grid-area: main_map;
+}
+
+
+#theSurvey{
+  grid-area: survey;
+  justify-self: center; /* added this to center the button in the div */
+}
+
+/* css for the button */
+#surveyButton{
+  grid-area:survey;
+  padding: 20px 15px;
+  margin: 20px;
+  background-color: #b4811c;
+  cursor: pointer;
+}
+
+/* css for button to get rid of the underline */
+#surveyButton a{
+color: aliceblue;
+font-style: oblique;
+
 
 }
- /* Slideshow container */
- .slideshow-container {
-    position: relative;
-    background: #d5dea2f1;
-  }
-  
-  /* Slides */
-  .mySlides {
-    display: none;
-    padding: 80px;
-    text-align: center;
-  }
-  
-  /* Next & previous buttons */
-  .prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    margin-top: -30px;
-    padding: 16px;
-    color: #888;
-    font-weight: bold;
-    font-size: 20px;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-  }
-  
-  /* Position the "next button" to the right */
-  .next {
-    position: absolute;
-    right: 0;
-    border-radius: 3px 0 0 3px;
-  }
-  
-  /* On hover, add a black background color with a little bit see-through */
-  .prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
-    color: rgb(225, 184, 184);
-  }
-  
-  /* The dot/bullet/indicator container */
-  .dot-container {
-    text-align: center;
-    padding: 20px;
-    background: rgb(211, 211, 136);
-  }
-  
-  /* The dots/bullets/indicators */
-  .dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-  }
-  
-  /* Add a background color to the active dot/circle */
-  .active, .dot:hover {
-    background-color: #717171;
-  }
-  
-  /* Add an italic font style to all quotes */
-  q {font-style: italic;}
-  
-  /* Add a blue color to the author */
-  .author {color: cornflowerblue;} 
+
+/* #placeForButtons{
+grid-area: buttonHome;
+display:grid;
+grid-template-columns: repeat(2, 1fr);
+} */
+
+
+#slideshow {
+  grid-area: slideshow;
+
+}
+
+#chart-container{
+grid-area: chart-container
+}
+/* Slideshow container */
+.slideshow-container {
+  position: relative;
+  background: #d5dea2f1;
+}
+
+/* Slides */
+.mySlides {
+  display: none;
+  padding: 80px;
+  text-align: center;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -30px;
+  padding: 16px;
+  color: #888;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  position: absolute;
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+  color: rgb(225, 184, 184);
+}
+
+/* The dot/bullet/indicator container */
+.dot-container {
+  text-align: center;
+  padding: 20px;
+  background: rgb(211, 211, 136);
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+/* Add a background color to the active dot/circle */
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Add an italic font style to all quotes */
+q {font-style: italic;}
+
+/* Add a blue color to the author */
+.author {color: cornflowerblue;} 
