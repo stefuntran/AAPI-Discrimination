@@ -201,6 +201,14 @@ function addChart(){
         ]
         },
         options: {
+            scales: {
+                y: {
+                  ticks: {
+                    stepSize: 1,
+                    beginAtZero: true,
+                  },
+                },
+              },
             responsive: true, //turn on responsive mode changes with page size
             maintainAspectRatio: false, // if `true` causes weird layout issues
             legend: { display: true },
