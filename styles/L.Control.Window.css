@@ -65,7 +65,7 @@
     z-index:30;
 
     background-color: rgba(0, 0, 0, 0.40);
-    transition-property: background;
+    /* transition-property: background; */
     transition-duration: 0.2s;
     transition-timing-function: linear;
 
