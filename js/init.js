@@ -1,6 +1,6 @@
 
 // declare variables
-let mapOptions = {'center': [34.0709,-118.444],'zoom':12};
+let mapOptions = {'center': [34.0709,-118.444],'zoom':15};
 
 
 const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlkin3Dn1TCTm5XgCqwLjV5VMMuC_578Sbe26vQYTZfwsbVNZ9TlM8tWLRh9EQVgxsk85oyKN21yOZ/pub?output=csv";
@@ -60,8 +60,10 @@ L.control.layers(null,layers,{collapsed:false}).addTo(map)
 
 
 function addSlideMarker(data){
+    console.log('in slide marker')
+    console.log(data)
     
-    
+    //get marker in slide to pan to marker on map
     if (L.addLayer(null) = True){
         L.addLayer(null).addTo(map);
         templayer.addLayer(circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>No, I still feel safe at UCLA</h2>`)).addTo(map);
@@ -97,31 +99,36 @@ function addMarker(data){
     circleOptions.fillColor = PerceptionColor;
     console.log(circleOptions.fillColor)
 
+    
+
     if (UserFeelingPasser.length <= 2){
         UserFeelingPasser = "No response";
     }
-
+    totalMarkerCount += 1
     if( UserPerceptionPasser == "No, I still feel safe at UCLA."){
-        
+        thisMarker = L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data['Please feel free to describe what happened if you feel comfortable doing so. Feel free to go into as much detail as you wish.']}</h2> <h3>${data['How do you feel after the incident? Feel free to share any feelings or emotions.  We would like to reiterate that this form is completely anonymous and will not be traced back to you. ']}</h3>`)
+        thisMarker._id = totalMarkerCount
         // circleOptions.fillColor = getPerceptionColor(UserPerceptionPasser)
-        safe.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data['Please feel free to describe what happened if you feel comfortable doing so. Feel free to go into as much detail as you wish.']}</h2> <h3>${data['How do you feel after the incident? Feel free to share any feelings or emotions.  We would like to reiterate that this form is completely anonymous and will not be traced back to you. ']}</h3>`))
+        safe.addLayer(thisMarker)
         countSafe += 1;
 
        // createButtons(data.lat,data.lng,data['Where did this occur? Please be specific by providing the building name or dorm. If you need a map, please take a look at the map provided below. If you would prefer to go on the website itself, here is the link! https://map.ucla.edu/'])
         }
     else if(UserPerceptionPasser  == "No, before and after the incident I feel unsafe at UCLA"){
-        
+        thisMarker = L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data['Please feel free to describe what happened if you feel comfortable doing so. Feel free to go into as much detail as you wish.']}</h2> <h3>${data['How do you feel after the incident? Feel free to share any feelings or emotions.  We would like to reiterate that this form is completely anonymous and will not be traced back to you. ']}</h3>`)
         // circleOptions.fillColor = getPerceptionColor(UserPerceptionPasser)
-        notSafeEver.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data['Please feel free to describe what happened if you feel comfortable doing so. Feel free to go into as much detail as you wish.']}</h2> <h3>${data['How do you feel after the incident? Feel free to share any feelings or emotions.  We would like to reiterate that this form is completely anonymous and will not be traced back to you. ']}</h3>`))
+        thisMarker._id = totalMarkerCount
+        notSafeEver.addLayer(thisMarker)
         countnotSafeEver+=1;
        
        // createButtons(data.lat,data.lng,data['Where did this occur? Please be specific by providing the building name or dorm. If you need a map, please take a look at the map provided below. If you would prefer to go on the website itself, here is the link! https://map.ucla.edu/'])
         
     }
     else{
-        
+        thisMarker = L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data['Please feel free to describe what happened if you feel comfortable doing so. Feel free to go into as much detail as you wish.']}</h2> <h3>${data['How do you feel after the incident? Feel free to share any feelings or emotions.  We would like to reiterate that this form is completely anonymous and will not be traced back to you. ']}</h3>`)
+        thisMarker._id = totalMarkerCount
         // circleOptions.fillColor = "blue"  
-        notSafeEver.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data['Please feel free to describe what happened if you feel comfortable doing so. Feel free to go into as much detail as you wish.']}</h2> <h3>${data['How do you feel after the incident? Feel free to share any feelings or emotions.  We would like to reiterate that this form is completely anonymous and will not be traced back to you. ']}</h3>`))
+        notSafe.addLayer(thisMarker)
         countnotSafe +=1;
      //   createButtons(data.lat,data.lng,data['Where did this occur? Please be specific by providing the building name or dorm. If you need a map, please take a look at the map provided below. If you would prefer to go on the website itself, here is the link! https://map.ucla.edu/'])
     }
@@ -144,14 +151,18 @@ function createButtons(lat,lng,title){
     spaceForButtons.appendChild(newButton);//this adds the button to our page.
 };
 
+let totalMarkerCount = 0;
+
 //create similar function for slideshow 
 function addslides(lat, lng, UserFeelings, UserPerceptionColor ){
+
     const newSlide = document.createElement("div"); // adds a new slide, creating the div
     let slideClass = "mySlides";
     // let slideColor = getPerceptionColor(UserPerception);
     newSlide.style.backgroundColor = UserPerceptionColor;
-    newSlide.id = "button"+UserFeelings; // gives the button a unique id
-    newSlide.innerHTML = UserFeelings; // gives the button a title
+    newSlide.id = "slide_id_"+UserFeelings; // gives the button a unique id
+    
+    newSlide.innerHTML = "\""+ UserFeelings+"\""; // gives the button a title
     newSlide.setAttribute("lat",lat); // sets the latitude 
     newSlide.setAttribute("lng",lng); // sets the longitude 
     newSlide.className = slideClass; //change slideClass either here or top (variable declaration)
@@ -162,6 +173,7 @@ function addslides(lat, lng, UserFeelings, UserPerceptionColor ){
 
     const slideArea = document.getElementById('slideArea')
     slideArea.appendChild(newSlide);//this adds the slide to our page.
+    
 //prepend 
 };
 
@@ -260,10 +272,10 @@ var slideIndex = 1;
 
 function plusSlides(n) {
   showSlides(slideIndex += n);
+  
 }
 
 function currentSlide(n) {
-   
   showSlides(slideIndex = n);
   
 }
@@ -279,15 +291,23 @@ function showSlides(n) {
     for (i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
     }
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-
-    }
-
+    // for (i = 0; i < dots.length; i++) {
+    //   dots[i].className = dots[i].className.replace(" active", "");
+    // }
+//   console.log(dots)
+  console.log(slideIndex) 
   slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
+//   dots[slideIndex-1].className += " active";
+  panMapToSlideMarker()
   addSlideMarker()
 } 
 //test
 // Creating window object
-var win =  L.control.window(map,{title:'Welcome to Chinese Discriminaion Map',content:'This is my first control window.'}).show()
+var win =  L.control.window(map,{title:'Welcome to Chinese Discriminaion Map',content:'insert introduction to project and how to use'}).show()
+
+function panMapToSlideMarker(thisDot){
+    let slideMarker = document.getElementById('slideMarker')
+    let lat = slideMarker.getAttribute('lat')
+    let lng = slideMarker.getAttribute('lng')
+    map.flyTo([lat,lng]);
+}
