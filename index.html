@@ -14,6 +14,7 @@
         <!-- Leaflet's css-->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
         <link rel="stylesheet" href="styles/L.Control.Window.css"/>
+        
         <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
 
         <!-- Leaflet's JavaScript-->
@@ -122,13 +123,41 @@
             
             <button onclick="filterData('all')">Show all</button> 
             <button onclick="filterData('stillFeelsafe')">Still Feel Safe</button>
+            <!--<button onclick="togglePopup()">ABOUT</button>-->
             <!--add other buttons-->
+
+      
+
         </header>
 
+      
 
+        <!--<button onclick="togglePopup()">ABOUT</button>-->
 
         <div class="main">
 
+          <!--BUTTON POP UP MESSAGE
+            <div class="popup" id="popup-1">
+            <div class="overlay"></div>
+            <div class="content">
+              <div class="close-btn" onclick="togglePopup()">&times;
+              </div>
+              <h1>Title</h1>
+              <p>Insert text here make sure it works</p>
+            </div>
+          </div>-->
+          
+            <div class="popup">
+              
+              <h2>Welcome to our page!</h2>
+              <button id="close">&times;</button>
+              <p>
+                Your personal experiences and story is unique and we would like to let you know that we care and are willing to listen. As you explore the various experiences that fellow students have had, we hope you feel a sense of community that you are not a lone. If you feel inclined to do so, please feel free to share your story so our community continues to see what is going on and grow. Click on the X on the top right of this message box to continue to our website.
+              </p>
+              <a href="https://forms.gle/dV8FiwGGPutdPaRf8" target="_blank">Continue to Survey</a>
+              
+              
+            </div>
           
             <div id="contents">
 

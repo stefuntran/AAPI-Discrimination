@@ -62,6 +62,29 @@ L.control.layers(null,layers,{collapsed:false}).addTo(map)
 //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 // }).addTo(map);
 
+//Popup test
+//function togglePopup(){
+    //document.getElementById("popup-1").classList.toggle("active");
+
+//}
+
+window.addEventListener("load", function(){
+    setTimeout(
+        function open(event){
+            document.querySelector(".popup").style.display = "block";
+        },
+        1000
+    )
+});
+document.querySelector("#close").addEventListener("click", function(){
+    document.querySelector(".popup").style.display = "none";
+});
+
+
+
+
+
+
 function processData(results){
     console.log(results)
    
