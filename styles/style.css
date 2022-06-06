@@ -45,9 +45,9 @@ header{
 
 
 #the_map{
-  height:80vh;
+  height:90vh;
   grid-area: main_map;
-  grid-template-columns: .35fr .50fr .15fr;
+  grid-template-columns: .30fr .60fr .15fr;
   grid-template-rows: .80fr .10fr .10fr ;
   /* grid-template-areas: "scrollarea spacing spacing" "scrollarea spacing spacing" "scrollarea spacing chart"  ; */
   display: grid;
@@ -138,7 +138,7 @@ font-style: oblique;
   grid-row: 1 / span 5;
   grid-template-columns: 1fr;
   grid-gap: 20px;
-  padding-left: 20px;
+  padding-left: 0.5px;
   overflow-y: scroll;
   background-color: rgba(255,255,255,0.5);
   z-index: 99999;
@@ -150,6 +150,7 @@ font-style: oblique;
 .defaultCards {
   /* display: grid; */
   grid-column: 1;
+  height: 450px;
   padding: 20px;
   /* padding:300px; */
   grid-template-rows: max-content 00px .2fr;

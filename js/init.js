@@ -233,18 +233,18 @@ function addCards(data){
     //show all, covid etc, one function 
 
     // newCard.className = slideClass; //change slideClass either here or top (variable declaration)
-    newCard.addEventListener('click', function(e){
-        map.flyTo([data.lat,data.lng]); //this is the flyTo from Leaflet
-        //add the function call (to remove and add highlight)
-        // console.log(e.target.id)
-        console.log(e.target.parentElement.id)
-        // unhighlightCard(e.target.parentElement.id)
-        // highlightCard()
-        // unhighlightCard(e.target.parentElement.id)
-        document.getElementById(e.target.parentElement.id).className += " highlightCard";
+    // newCard.addEventListener('click', function(e){
+    //     map.flyTo([data.lat,data.lng]); //this is the flyTo from Leaflet
+    //     //add the function call (to remove and add highlight)
+    //     // console.log(e.target.id)
+    //     console.log(e.target.parentElement.id)
+    //     // unhighlightCard(e.target.parentElement.id)
+    //     // highlightCard()
+    //     // unhighlightCard(e.target.parentElement.id)
+    //     document.getElementById(e.target.parentElement.id).className += " highlightCard";
 
         
-    })
+    // })
 
 //add covid
     const scrollAreaSelector = document.getElementById('scrollArea')
@@ -291,7 +291,7 @@ function removeCards(){
 function filterCards(filter){
     //filter card based on feedling 
         
-    removeCards()
+ 
     //do if not all 
 
         // remove everything
@@ -303,21 +303,25 @@ function filterCards(filter){
         //if empty
         document.querySelectorAll(["stillSafe", "beforeAfter", "notSafe"]);
         addCards(allthecardData)
+        
     }
 
 
     if (filter == "stillSafe"){
+        removeCards()
         const elements2 = document.querySelectorAll(["stillSafe"]);
         addCards(filter)
         
     }
 
     if (filter == "beforeAfter"){
+        removeCards()
         document.querySelectorAll(["beforeAfter"]);
         addCards(filter)
     }
 
     if (filter == "notSafe"){
+        removeCards()
         document.querySelectorAll(["notSafe"]);
         addCards(filter)
     }
