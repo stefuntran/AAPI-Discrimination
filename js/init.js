@@ -290,7 +290,7 @@ function removeCards(){
 
 function filterCards(filter){
     //filter card based on feedling 
-        
+    removeCards()
  
     //do if not all 
 
@@ -308,20 +308,20 @@ function filterCards(filter){
 
 
     if (filter == "stillSafe"){
-        removeCards()
+        
         const elements2 = document.querySelectorAll(["stillSafe"]);
         addCards(filter)
         
     }
 
     if (filter == "beforeAfter"){
-        removeCards()
+        
         document.querySelectorAll(["beforeAfter"]);
         addCards(filter)
     }
 
     if (filter == "notSafe"){
-        removeCards()
+        
         document.querySelectorAll(["notSafe"]);
         addCards(filter)
     }
