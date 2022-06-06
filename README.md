@@ -4,10 +4,10 @@
 
 ## Table of Contents
 * [Objective](#objective)
-* [Who is being empowered?]
-* [What technology was used?]
-* [How it can be repurposed?]
-* [The Mapplication]
+* [Who is being empowered?](#who-is-being-empowered)
+* [What technology was used?](#what-technology-was-used?)
+* [How it can be repurposed?](#how-can-it-be-repurposed?)
+* [The Mapplication](#the-mapplication)
 
 ## Objective
 ### What social problem is being addressed?
@@ -16,7 +16,7 @@ Chinese Americans have faced a long history of discrimination and hate in Americ
 ### Who is being empowered?
 By creating a map of Chinese UCLA students who have been discriminated based off of data that is sourced from the community, we amplify their voices and experiences. Sometimes, data that is gathered from large government groups often misrepresent data. With Chinese members as the main contributers to our mapplication, we are more confident that our map reflects their experiences.
 
-### What technology is used by this project
+### What technology was used?
 In this project we are utilizing opensource software such as Papaparse (parser for csv) and Leaflet (to create our map). In addition, we used HTML, CSS and javascript in order to create our webpage. 
 
 ### What technical and ethical problems could there be in developing this tool?
