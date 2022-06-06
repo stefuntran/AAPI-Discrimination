@@ -47,9 +47,13 @@ header{
 #the_map{
   height:80vh;
   grid-area: main_map;
-  grid-template-columns: .33fr .66fr;
-  grid-template-areas: "scrollarea spacing";
+  grid-template-columns: .35fr .50fr .15fr;
+  grid-template-rows: .80fr .10fr .10fr ;
+  /* grid-template-areas: "scrollarea spacing spacing" "scrollarea spacing spacing" "scrollarea spacing chart"  ; */
   display: grid;
+  /* justify-content: bottom; */
+  align-self: bottom;
+  /* justify-content: right; */
 
 
 }
@@ -65,8 +69,8 @@ grid-area: footer;
 .main{
 grid-area: main_content;
 grid-template-columns: 1fr;
-grid-template-rows: auto auto;
-grid-template-areas:"main_map" "content";
+grid-template-rows: auto;
+grid-template-areas:"main_map";
 display: grid;
 gap: 20px;
 }
@@ -75,13 +79,30 @@ gap: 20px;
   grid-area: content;
   display: grid;
   grid-template-columns: 1fr; 
-  grid-template-areas:"chart"
+  /* grid-template-areas:"chart" */
 }
+/* add more grid to make longer*/
 
+
+/* /////////////////////charts  */
 #chart-container{
-  grid-area:chart;
+  display: grid;
+  grid-column:2/ span 2;
+  grid-row:3;
+  z-index: 9999;  
+  justify-content: right;
 }
 
+#charty{
+  cursor: pointer;
+  background-color: rgba(255, 225, 12, .5);
+  grid-row:2 / span 2;
+  /* grid-column:1 /span 2; */
+  border-radius: 10px;
+  padding: 20px;
+}
+
+/* ///////////////////////////// survey */
 #theSurvey{
   grid-area: survey;
  /* added this to center the button in the div */
@@ -97,6 +118,8 @@ gap: 20px;
 
 }
 
+
+/* ////////////cards */
 /* css for button to get rid of the underline */
 #surveyButton a{
 color: aliceblue;
@@ -111,12 +134,11 @@ font-style: oblique;
 
 #scrollArea {
   display: grid;
-  grid-column: 0;
-  grid-row: 0;
+  grid-column: 1;
+  grid-row: 1 / span 5;
   grid-template-columns: 1fr;
   grid-gap: 20px;
   padding-left: 20px;
-  grid-area: scrollarea;
   overflow-y: scroll;
   background-color: rgba(255,255,255,0.5);
   z-index: 99999;
@@ -130,7 +152,7 @@ font-style: oblique;
   grid-column: 1;
   padding: 20px;
   /* padding:300px; */
-  grid-template-rows: max-content 200px .2fr;
+  grid-template-rows: max-content 00px .2fr;
   direction: ltr !important;
 }
 
@@ -145,6 +167,8 @@ font-style: oblique;
   /* grid-row:2; */
 }
 
+/* /////////////////////////// transitions, clcik yellow highlight chagen (event listener, 
+call remove highlight or end cards */
 *,
 *:before,
 *:after{
@@ -152,9 +176,20 @@ font-style: oblique;
     margin: 0;
     box-sizing: border-box;
 }
-body{
-    
+
+
+.active, .collapsible:hover {
+  background-color: #555;
 }
+
+.hidden{
+  display: none;
+}
+
+#filter{
+  
+}
+
 .popup{
     background-color: #ffffff;
     width: 800px;
@@ -186,7 +221,7 @@ body{
     margin: 20px 0;
     line-height: 25px;
 }
-a{
+#ohsteven{
     display: block;
     width: 150px;
     position: relative;
@@ -197,9 +232,6 @@ a{
     text-decoration: none;
     padding: 5px 0;
 }
-
-
-
 
 
 

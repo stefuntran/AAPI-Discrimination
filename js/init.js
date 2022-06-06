@@ -2,6 +2,8 @@
 // declare variables
 let mapOptions = {'center': [34.0709,-118.444],'zoom':15};
 
+// ⚠️😈😈😈remember to switch to false to enable the popup😈😈😈⚠️
+const debug = false;
 
 // 🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙 add the scroller llama 🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙
 let scroller = scrollama();
@@ -17,9 +19,11 @@ let Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/re
 //go to adobe, get three dif colors
 Esri_WorldStreetMap.addTo(map);
 
-let safe = L.markerClusterGroup();
+let safe = L.markerClusterGroup({maxClusterRadius:10});
 let notSafe = L.markerClusterGroup();
 let notSafeEver = L.markerClusterGroup();
+
+let allLayers = L.featureGroup();
 
 //adding variables to keep track of count for chart
 let countSafe = 0;
@@ -43,6 +47,7 @@ let layers = {
 
 };
 
+
 let circleOptions = {
     radius: 6,
     fillColor: "#ff7800",
@@ -56,7 +61,7 @@ let circleOptions = {
 let templayer;
 
 // add layer control box
-L.control.layers(null,layers,{collapsed:false}).addTo(map)
+// L.control.layers(null,layers,{collapsed:false}).addTo(map)
 
 // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -68,14 +73,14 @@ L.control.layers(null,layers,{collapsed:false}).addTo(map)
 
 //}
 
-window.addEventListener("load", function(){
-    setTimeout(
-        function open(event){
-            document.querySelector(".popup").style.display = "block";
-        },
-        1000
-    )
-});
+// window.addEventListener("load", function(){
+//     setTimeout(
+//         function open(event){
+//             document.querySelector(".popup").style.display = "block";
+//         },
+//         1000
+//     )
+// });
 document.querySelector("#close").addEventListener("click", function(){
     document.querySelector(".popup").style.display = "none";
 });
@@ -113,7 +118,9 @@ function processData(results){
     notSafe.addTo(map) // add our layers after markers have been made  
     notSafeEver.addTo(map)
     addChart("all")
-    let allLayers = L.featureGroup([safe,notSafeEver,notSafe]);
+    perChart.options.plugins.legend.display = false
+    perChart.options.scales.x.display = false
+    allLayers = L.featureGroup([safe,notSafeEver,notSafe]);
     map.fitBounds(allLayers.getBounds());
     map.scrollWheelZoom.disable()
     scroller.setup({
@@ -201,6 +208,8 @@ function addMarker(data){
 
     return data
 };
+
+
 let allthecardData = []// make copy bc we will delete after
 let totalMarkerCount = 0;
 
@@ -216,7 +225,7 @@ function addCards(data){
     newCard.setAttribute("data-step",totalMarkerCount)
     newCard.style.backgroundColor = data.color;
     newCard.id = "llama_id_"+totalMarkerCount; // gives the button a unique id
-    
+    let thisId = newCard.id;
     newCard.innerHTML = `<div class="title">${data.feeling}</div><p>${data.event}</p><h3>Has covid affected?</h3><p>${data.covid}`; // gives the button a title
     newCard.setAttribute("lat",data.lat); // sets the latitude 
     newCard.setAttribute("lng",data.lng); // sets the longitude 
@@ -224,8 +233,17 @@ function addCards(data){
     //show all, covid etc, one function 
 
     // newCard.className = slideClass; //change slideClass either here or top (variable declaration)
-    newCard.addEventListener('click', function(){
+    newCard.addEventListener('click', function(e){
         map.flyTo([data.lat,data.lng]); //this is the flyTo from Leaflet
+        //add the function call (to remove and add highlight)
+        // console.log(e.target.id)
+        console.log(e.target.parentElement.id)
+        // unhighlightCard(e.target.parentElement.id)
+        // highlightCard()
+        // unhighlightCard(e.target.parentElement.id)
+        document.getElementById(e.target.parentElement.id).className += " highlightCard";
+
+        
     })
 
 //add covid
@@ -234,6 +252,7 @@ function addCards(data){
     totalMarkerCount +=1;
 //prepend 
 };
+
 
 function getPerceptionColor(UserPerception){
     
@@ -249,7 +268,6 @@ function getPerceptionColor(UserPerception){
         case "No, before and after the incident I feel unsafe at UCLA":
             slideColor = globalColors.nowUnsafe
             return slideColor
-        
     }
     console.log(UserPerception)
 }
@@ -257,6 +275,8 @@ function getPerceptionColor(UserPerception){
 
 
 function filterData(filter){
+    console.log(allthecardDatacopy)
+
     console.log('you clicked the button!!!! '+filter)
     filterMap(filter)
     filterCards(filter)
@@ -281,50 +301,64 @@ function filterCards(filter){
     if (filter == "all"){
         //add all of the cards
         //if empty
-        
+        document.querySelectorAll(["stillSafe", "beforeAfter", "notSafe"]);
         addCards(allthecardData)
     }
 
-    const elements2 = document.querySelectorAll(`[feeling="${filter}"]'`);
+
     if (filter == "stillSafe"){
-        
+        const elements2 = document.querySelectorAll(["stillSafe"]);
         addCards(filter)
         
     }
 
-    ////////////////////// todo please check this!
     if (filter == "beforeAfter"){
+        document.querySelectorAll(["beforeAfter"]);
         addCards(filter)
     }
 
     if (filter == "notSafe"){
+        document.querySelectorAll(["notSafe"]);
         addCards(filter)
     }
 }
 
 function filterMap(filter){
     map.eachLayer(function(layer){
-        map.removeLayer(layer)})
-
+        map.removeLayer(layer)
+    })
+    Esri_WorldStreetMap.addTo(map);
     if (filter == "all"){
         map.addLayer(allLayers)
+        map.flyToBounds(notSafe.getBounds());
+        map.setZoom(14);
     }
 
     if (filter == "stillSafe"){
         map.addLayer(safe)
+        map.flyToBounds(safe.getBounds());
     }
 
     ////////////////////// todo please check this!
     if (filter == "beforeAfter"){
         map.addLayer(notSafeEver)
+        map.flyToBounds(notSafeEver.getBounds());
+        map.setZoom(14);
     }
 
     if (filter == "notSafe"){
         map.addLayer(notSafe)
+        map.flyToBounds(notSafe.getBounds());
+        map.setZoom(14);
     }
-}
-//make copy of card so that we can add back in
 
+    // new map( L.map('the_map').setView(mapOptions.center, mapOptions.zoom)){
+        
+    // }
+}
+//make copy of card so that we can add back in 
+var allthecardDatacopy = Object.assign({}, allthecardData)
+let perChart
 
 function addChart(chartDisplay){
 
@@ -339,17 +373,18 @@ function addChart(chartDisplay){
 
     ////////////////////// todo please fix this!
     if (chartDisplay == "beforeAfter"){
-        chartData = [stillUnsafe]
+        chartData = [countnotSafe]
     }
 
     if (chartDisplay == "notSafe"){
-        chartData = [nowUnsafe]
+        chartData = [countnotSafeEver]
     }
     ///////////////////// do same for cards and filter, have default view for cards and map
-
-    
+    // 
+    // perChart.options.scales.x.display = false
+    // perChart.options.plugins.legend.display = false
     // create the new chart here, target the id in the html called "chart"
-    new Chart(document.getElementById("chart"), {
+    perChart = new Chart(document.getElementById("chart"), {
         type: 'bar', //can change to 'bar','line' chart or others
         data: {
             // labels for data here
@@ -364,8 +399,24 @@ function addChart(chartDisplay){
         ]
         },
         options: {
+            plugins: {
+                legend: {
+                    display: false,
+                },
+            },
+
             scales: {
+                // scaleShowLabels:false,
+                x: {
+                    display:false,
+                },
+                
+                
                 y: {
+                    
+                    title:{ 
+                        display: false,
+                    },
                   ticks: {
                     stepSize: 1,
                     beginAtZero: true,
@@ -374,13 +425,15 @@ function addChart(chartDisplay){
               },
             responsive: true, //turn on responsive mode changes with page size
             maintainAspectRatio: false, // if `true` causes weird layout issues
-            legend: { display: true },
+            legend: { display: false },
             title: {
                 display: true,
                 text: 'Survey Respondants'
             }
         }
     });
+    ////////////////////////////////////////
+
 }
 
 function loadData(url){
@@ -389,6 +442,10 @@ function loadData(url){
         download: true,
         complete: results => processData(results)
     })
+    if(debug == false){
+        document.querySelector(".popup").style.display = "block";
+
+    }
 };
 
 
@@ -400,13 +457,15 @@ function loadData(url){
 function highlightCard(selectedCard){
     // console.log('into highlightCard')
     console.log(selectedCard.id.value)
-
+    
     let card = document.getElementById(selectedCard.id.value).className += " highlightCard";
     console.log(card)
     // card.style.className = "highlightCard";
     // console.log(card)
 
 }
+
+//
 
 function unhighlightCard(selectedCard){
     let highlights = document.getElementsByClassName("highlightCard");
@@ -433,9 +492,35 @@ function scrollStepper(thisStep){
 
 //
 
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+let chartStatus = true
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    if (chartStatus == true){
+        chartStatus = false
+        // console.log(chartStatus)
+        document.getElementById("charty").style.display = "none";
+    }
+    else{
+        chartStatus = true
+        // console.log(chartStatus)
+        document.getElementById("charty").style.display = "block";
+    }
+    // if (content.style != "hidden"){
+    //     content.style = "none";
+    // } else {
+    //     content.style = "block";
+    // } 
+  });
+}
+
+
 loadData(dataUrl)
-
-
 //test
 // Creating window object
 // var win =  L.control.window(map,{title:'Welcome to Chinese Discriminaion Map',content:'insert introduction to project and how to use'}).show()

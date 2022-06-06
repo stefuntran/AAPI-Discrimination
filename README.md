@@ -42,7 +42,7 @@ Others can use this project in the future by accessing it through various ways s
 
 
 
-3. **Bar Chart*
+3. **Bar Chart**
 
 
 

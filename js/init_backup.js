@@ -112,7 +112,7 @@ function addMarker(data){
         safe.addLayer(thisMarker)
         countSafe += 1;
 
-       // createButtons(data.lat,data.lng,data['Where did this occur? Please be specific by providing the building name or dorm. If you need a map, please take a look at the map provided below. If you would prefer to go on the website itself, here is the link! https://map.ucla.edu/'])
+      
         }
     else if(UserPerceptionPasser  == "No, before and after the incident I feel unsafe at UCLA"){
         thisMarker = L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data['Please feel free to describe what happened if you feel comfortable doing so. Feel free to go into as much detail as you wish.']}</h2> <h3>${data['How do you feel after the incident? Feel free to share any feelings or emotions.  We would like to reiterate that this form is completely anonymous and will not be traced back to you. ']}</h3>`)
@@ -121,7 +121,7 @@ function addMarker(data){
         notSafeEver.addLayer(thisMarker)
         countnotSafeEver+=1;
        
-       // createButtons(data.lat,data.lng,data['Where did this occur? Please be specific by providing the building name or dorm. If you need a map, please take a look at the map provided below. If you would prefer to go on the website itself, here is the link! https://map.ucla.edu/'])
+     
         
     }
     else{
@@ -130,11 +130,9 @@ function addMarker(data){
         // circleOptions.fillColor = "blue"  
         notSafe.addLayer(thisMarker)
         countnotSafe +=1;
-     //   createButtons(data.lat,data.lng,data['Where did this occur? Please be specific by providing the building name or dorm. If you need a map, please take a look at the map provided below. If you would prefer to go on the website itself, here is the link! https://map.ucla.edu/'])
+   
     }
     addslides(data.lat,data.lng, UserFeelingPasser, PerceptionColor)
-
-
     return data
 };
 
@@ -303,7 +301,7 @@ function showSlides(n) {
 } 
 //test
 // Creating window object
-var win =  L.control.window(map,{title:'Welcome to Chinese Discriminaion Map',content:'insert introduction to project and how to use'}).show()
+// var win =  L.control.window(map,{title:'Welcome to Chinese Discriminaion Map',content:'insert introduction to project and how to use'}).show()
 
 function panMapToSlideMarker(thisDot){
     let slideMarker = document.getElementById('slideMarker')
