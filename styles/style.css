@@ -10,10 +10,30 @@ header{
   grid-area: header;
   justify-self: center;
   align-self: center;
+  text-align: center;
+  font-size: 18px;
+  
 }
+
+#filter{
+  display: grid;
+  grid-template-columns: .2fr .2fr .2fr .2fr;
+  padding: 5px;
+  
+  text-align: center;
+}
+
+.roundButton{
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+
 
 #footer{
     grid-area: footer;
+
   }
   
   
