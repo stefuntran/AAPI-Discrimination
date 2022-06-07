@@ -3,7 +3,7 @@
 let mapOptions = {'center': [34.0709,-118.444],'zoom':15};
 
 // ⚠️😈😈😈remember to switch to false to enable the popup😈😈😈⚠️
-const debug = true;
+const debug = false;
 
 // 🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙 add the scroller llama 🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙
 let scroller = scrollama();
