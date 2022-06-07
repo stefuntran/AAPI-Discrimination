@@ -127,8 +127,7 @@ font-style: oblique;
 }
 
 .highlightCard{
-  color: yellow;
-  border-color: gold;
+  border-color: gold !important;;
   border: 10px solid;
 }
 
@@ -149,8 +148,10 @@ font-style: oblique;
 
 .defaultCards {
   /* display: grid; */
+  /* color: black; */
+  color:black;
   grid-column: 1;
-  height: 450px;
+  height: 300px;
   padding: 20px;
   /* padding:300px; */
   grid-template-rows: max-content 00px .2fr;
