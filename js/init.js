@@ -123,6 +123,13 @@ function processData(results){
     allLayers = L.featureGroup([safe,notSafeEver,notSafe]);
     map.fitBounds(allLayers.getBounds());
     map.scrollWheelZoom.disable()
+    // 🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙
+    // 🦙🦙this is the setup for the scrollamaaaaaaaaaaaaaaaa 🦙🦙
+    // 🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙🦙 
+    initTheLlama()
+};
+
+function initTheLlama(){
     scroller.setup({
         step: ".defaultCards", // this is the name of the class that we are using to step into, it is called "step", not very original
     })
@@ -139,8 +146,10 @@ function processData(results){
         // left this in case you want something to happen when someone
         // steps out of a div to know what story they are on.
         unhighlightCard(response.element)
+
     });
-};
+    scroller.offset(0.25)
+}
 
 function addMarker(data){
 
@@ -214,8 +223,12 @@ let allthecardData = []// make copy bc we will delete after
 let totalMarkerCount = 0;
 
 //create similar function for slideshow 
-function addCards(data){
-
+function addCards(data,filter){
+    console.log('this is the add cards data')
+    console.log(data)
+    
+    // console.log('this is subdata:')
+    // console.log(subdata)
     const newCard = document.createElement("div"); // adds a new slide, creating the div
     // let slideClass = "mySlides";
     newCard.className = "defaultCards";
@@ -233,18 +246,18 @@ function addCards(data){
     //show all, covid etc, one function 
 
     // newCard.className = slideClass; //change slideClass either here or top (variable declaration)
-    // newCard.addEventListener('click', function(e){
-    //     map.flyTo([data.lat,data.lng]); //this is the flyTo from Leaflet
-    //     //add the function call (to remove and add highlight)
-    //     // console.log(e.target.id)
-    //     console.log(e.target.parentElement.id)
-    //     // unhighlightCard(e.target.parentElement.id)
-    //     // highlightCard()
-    //     // unhighlightCard(e.target.parentElement.id)
-    //     document.getElementById(e.target.parentElement.id).className += " highlightCard";
+    newCard.addEventListener('click', function(e){
+        map.flyTo([data.lat,data.lng]); //this is the flyTo from Leaflet
+        //add the function call (to remove and add highlight)
+        // console.log(e.target.id)
+       
+        // unhighlightCard(e.target.parentElement.id)
+        // highlightCard()
+        // unhighlightCard(e.target.parentElement.id)
+        // document.getElementById(e.target.parentElement.id).className += " highlightCard";
 
         
-    // })
+    })
 
 //add covid
     const scrollAreaSelector = document.getElementById('scrollArea')
@@ -275,56 +288,54 @@ function getPerceptionColor(UserPerception){
 
 
 function filterData(filter){
-    console.log(allthecardDatacopy)
+
 
     console.log('you clicked the button!!!! '+filter)
     filterMap(filter)
     filterCards(filter)
-    filterChart(filter)
+    // filterChart(filter)
 }
 
 function removeCards(){
-    document.getElementsById("scrollArea").innerHTML = "";
+    const cards = document.querySelectorAll('.defaultCards');
+    cards.forEach(card => {card.remove();});
 }
 
 
 function filterCards(filter){
+    
     //filter card based on feedling 
+    console.log('the filter is')
+    console.log(filter)
     removeCards()
- 
-    //do if not all 
-
-        // remove everything
-    //replace map = https://bobbyhadz.com/blog/javascript-get-all-elements-by-data-attribute
-
-    // add everything if filter is all
+    let theFullFilter
+    switch (filter) {
+        case "stillSafe":
+            theFullFilter = "No, I still feel safe at UCLA."
+            break;
+        case "beforeAfter":
+            theFullFilter = "No, before and after the incident I feel unsafe at UCLA"
+            break;
+        case "notSafe":
+            theFullFilter = "Yes, I no longer feel safe at UCLA due to the incident."
+            break;
+    }
+    // add the cards the data
     if (filter == "all"){
-        //add all of the cards
-        //if empty
-        document.querySelectorAll(["stillSafe", "beforeAfter", "notSafe"]);
-        addCards(allthecardData)
-        
+        // removeCards()
+        allthecardData.forEach(function(data){
+            addCards(data)
+        })
     }
-
-
-    if (filter == "stillSafe"){
-        
-        const elements2 = document.querySelectorAll(["stillSafe"]);
-        addCards(filter)
-        
+    // add the cards based on the filter data
+    else{
+        // removeCards()
+        let subdata = allthecardData.filter(respondent => respondent.perception == theFullFilter)
+        subdata.forEach(function(data){
+            addCards(data)
+        })
     }
-
-    if (filter == "beforeAfter"){
-        
-        document.querySelectorAll(["beforeAfter"]);
-        addCards(filter)
-    }
-
-    if (filter == "notSafe"){
-        
-        document.querySelectorAll(["notSafe"]);
-        addCards(filter)
-    }
+    initTheLlama()
 }
 
 function filterMap(filter){
@@ -461,9 +472,11 @@ function loadData(url){
 function highlightCard(selectedCard){
     // console.log('into highlightCard')
     console.log(selectedCard.id.value)
+    if(selectedCard.id.value != undefined){
+        let card = document.getElementById(selectedCard.id.value).className += " highlightCard";
+        console.log(card)
     
-    let card = document.getElementById(selectedCard.id.value).className += " highlightCard";
-    console.log(card)
+    }
     // card.style.className = "highlightCard";
     // console.log(card)
 
@@ -472,7 +485,7 @@ function highlightCard(selectedCard){
 //
 
 function unhighlightCard(selectedCard){
-    let highlights = document.getElementsByClassName("highlightCard");
+    let highlights = document.getElementsByClassName("defaultCards highlightCard");
     while (highlights.length)
         highlights[0].className = highlights[0].className.replace(/\bhighlightCard\b/g, "");
     //  document.getElementById(selectedCard.id.value);
@@ -482,14 +495,15 @@ function unhighlightCard(selectedCard){
 
 function scrollStepper(thisStep){
     highlightCard(thisStep)
-    // console.log('into scrollStepper')
-    // console.log(thisStep)
+    console.log('into scrollStepper')
+    console.log(thisStep)
     // optional: console log the step data attributes:
     // console.log("you are in thisStep: "+thisStep)
     let thisLat = thisStep.lat.value
     let thisLng = thisStep.lng.value
     // tell the map to fly to this step's lat/lng pair:
     map.flyTo([thisLat,thisLng],18,{padding: [50,50]})
+    
 }
 
 
