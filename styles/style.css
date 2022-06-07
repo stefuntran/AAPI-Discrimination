@@ -20,15 +20,17 @@ header{
   grid-template-columns: .2fr .2fr .2fr .2fr;
   padding: 3px;
   
-  text-align: center;
+  
 }
 
 .roundButton{
   border-radius: 5px;
   padding: 5px;
   margin-left: 5px;
+  text-align: center;
   cursor: pointer;
 }
+
 
 
 
