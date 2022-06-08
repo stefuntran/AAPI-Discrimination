@@ -44,7 +44,7 @@ Others can use this project in the future by accessing it through various ways s
 
 3. **Bar Chart**
 
-Located on the bottom right of the map, there is a bar chart visualizing the responses that users chose when filling out the survey. The color of the bar graphs match the colors of the buttons and messages. If users do not want to see the bar graph, they can minimize it by clicking on the "toggle chart". To bring back the graph, users can click the same "toggle chart" and it will show back up. 
+Located on the bottom right of the map, there is a bar chart visualizing the amount of responses that users chose when filling out the survey. The color of the bar graphs match the colors of the buttons and messages. If users do not want to see the bar graph, they can minimize it by clicking on the "toggle chart". To bring back the graph, users can click the same "toggle chart" and it will show back up. 
 
 
 
