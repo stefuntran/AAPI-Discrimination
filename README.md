@@ -50,6 +50,7 @@ Others can use this project in the future by accessing it through various ways s
 
 
 4. **Window Pop-Up**
+
 Users entering the website will be greeted with an automatic pop-up welcoming the user and providing some information regarding the website. At the end of the description, users have the option of filling out the survey and then closing the pop-up window by clickng the "X" button to continue to the website, or declining to fill out the survey and click the "X" button to enter. 
 
 
