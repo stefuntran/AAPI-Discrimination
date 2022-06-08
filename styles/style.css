@@ -115,6 +115,7 @@ gap: 20px;
   grid-row:3;
   z-index: 9999;  
   justify-content: right;
+  margin-bottom: 15px;
 }
 
 #charty{
@@ -124,7 +125,7 @@ gap: 20px;
   /* grid-column:1 /span 2; */
   border-radius: 10px;
   padding: 20px;
-  margin-bottom: 15px;
+
 }
 
 /* ///////////////////////////// survey */
@@ -188,6 +189,7 @@ font-style: oblique;
   font-size: 1.5em;
   font-weight: bold;
   text-align: center;
+
 }
 
 .defaultCards p{
@@ -207,10 +209,12 @@ call remove highlight or end cards */
 
 .active, .collapsible:hover {
   background-color: #555;
+
 }
 
 .hidden{
   display: none;
+  
 }
 
 #filter{
