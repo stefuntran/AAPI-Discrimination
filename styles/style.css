@@ -22,11 +22,14 @@ header{
 h1{
 
 
+
   font-family: fantasy;
 }
 
 #filter{
   padding-left: 15px;
+  font-weight: 800;
+  color:rgba(255, 255, 255, 0.902);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-bottom: -30px;
@@ -36,7 +39,12 @@ h1{
 
 }
 
+#question{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: larger;
+  align-self: center;
 
+}
 
 
 .roundButton{
@@ -187,6 +195,8 @@ font-style: oblique;
   background-color: rgba(255,255,255,0.5);
   z-index: 99999;
   direction: rtl;
+
+ 
   
   /* display: block; */
 }
@@ -194,6 +204,7 @@ font-style: oblique;
 .defaultCards {
   border-radius: 10px;
   text-align: center;
+
   
   /* display: grid; */
   /* color: black; */
@@ -212,6 +223,7 @@ font-style: oblique;
   font-size: 1.5em;
   font-weight: bold;
   text-align: center;
+  margin-top: 30px;
 
 }
 
@@ -349,6 +361,14 @@ nav ul#main_menu li a
 	display: inline-block;
 	position: relative;
 	z-index: 1;
+}
+
+#logo{
+  color:black;
+  align-content: left;
+  margin-bottom: 15px;
+  text-decoration: none;
+ 
 }
 
 
