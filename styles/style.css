@@ -94,7 +94,7 @@ header{
 #the_map{
   height:90vh;
   grid-area: main_map;
-  border-radius: 25px;
+  border-radius: 20px;
   border-style:groove;
   border-color:darkgreen;
   grid-template-columns: .30fr .60fr .15fr;
@@ -412,7 +412,6 @@ nav ul#main_menu li a
   margin-right: 455px;
   
 }
-
 
 
 
