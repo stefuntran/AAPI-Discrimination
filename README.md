@@ -6,7 +6,6 @@
 * [Objective](#objective)
 * [Who is being empowered?](#who-is-being-empowered)
 * [What technology was used?](#what-technology-was-used?)
-* [What technical and ethical problems could there be in developing this tool?](#What-technical-and-ethical-problems-could-there-be-in-developing-this-tool?)
 * [How it can be repurposed?](#how-can-it-be-repurposed?)
 * [The Mapplication](#the-mapplication)
 
@@ -29,7 +28,7 @@ Others can use this project in the future by accessing it through various ways s
 ## The Mapplication
 ### Features
 1. **Responsive Map**
-
+The map corresponds directly with the scrollbar. As the users scroll to each story, the map will pan to the point that the user story refers to. The user can then click on the marker to read more about th experience.
 
 
 
@@ -37,7 +36,7 @@ Others can use this project in the future by accessing it through various ways s
 
 
 2. **User Responses + Scrollbar**
-
+The users are able to scroll through users responses in the scrollbar. The scrollbar will highlighted the card that the user is currently using.
 
 
 
@@ -55,6 +54,8 @@ Located on the bottom right of the map, there is a bar chart visualizing the amo
 
 Users entering the website will be greeted with an automatic pop-up welcoming the user and providing some information regarding the website. At the end of the description, users have the option of filling out the survey and then closing the pop-up window by clickng the "X" button to continue to the website, or declining to fill out the survey and click the "X" button to enter. 
 
+5. **Colors**
+The colors of the markers on the map, bar chart, and cards corespond to users response to the survey question "How has the incident changed your perception of safety at UCLA?". This helps connect all the applications on our map together.
 
 
 ### Screenshots
