@@ -5,8 +5,8 @@
 ## Table of Contents
 * [Objective](#objective)
 * [Who is being empowered?](#who-is-being-empowered)
-* [What technology was used?](#what-technology-was-used?)
-* [How it can be repurposed?](#how-can-it-be-repurposed?)
+* [What technology was used?](#what-technology-was-used)
+* [How it can be repurposed?](#how-can-it-be-repurposed)
 * [The Mapplication](#the-mapplication)
 
 ## Objective
