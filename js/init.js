@@ -182,7 +182,7 @@ function addMarker(data){
 
     totalMarkerCount += 1
     if( data.perception == "No, I still feel safe at UCLA."){
-        thisMarker = L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data.event}</h2> <h3>${data.feeling}</h3>`)
+        thisMarker = L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data.event}</h2>`)
         thisMarker._id = totalMarkerCount
         // circleOptions.fillColor = getPerceptionColor(UserPerceptionPasser)
         safe.addLayer(thisMarker)
@@ -191,7 +191,7 @@ function addMarker(data){
        // createButtons(data.lat,data.lng,data['Where did this occur? Please be specific by providing the building name or dorm. If you need a map, please take a look at the map provided below. If you would prefer to go on the website itself, here is the link! https://map.ucla.edu/'])
         }
     else if(data.perception  == "No, before and after the incident I feel unsafe at UCLA"){
-        thisMarker = L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data.event}</h2> <h3>${data.feeling}</h3>`)
+        thisMarker = L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data.event}</h2>`)
         // circleOptions.fillColor = getPerceptionColor(UserPerceptionPasser)
         thisMarker._id = totalMarkerCount
         notSafeEver.addLayer(thisMarker)
@@ -201,7 +201,7 @@ function addMarker(data){
         
     }
     else{
-        thisMarker = L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data.event}</h2> <h3>${data.feeling}</h3>`)
+        thisMarker = L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data.event}</h2>`)
         thisMarker._id = totalMarkerCount
         // circleOptions.fillColor = "blue"  
         notSafe.addLayer(thisMarker)
@@ -239,7 +239,7 @@ function addCards(data,filter){
     newCard.style.backgroundColor = data.color;
     newCard.id = "llama_id_"+totalMarkerCount; // gives the button a unique id
     let thisId = newCard.id;
-    newCard.innerHTML = `<div class="title">${data.feeling}</div><p>${data.event}</p><h3>Has covid affected?</h3><p>${data.covid}`; // gives the button a title
+    newCard.innerHTML = `<div class="title">"${data.feeling}"</div>  <h2>Has covid affected?</h2> <h3>${data.covid}</h3>`; // gives the button a title
     newCard.setAttribute("lat",data.lat); // sets the latitude 
     newCard.setAttribute("lng",data.lng); // sets the longitude 
     newCard.setAttribute("feeling",data.perception); // remove card when you click button, 
@@ -346,25 +346,26 @@ function filterMap(filter){
     if (filter == "all"){
         map.addLayer(allLayers)
         map.flyToBounds(notSafe.getBounds());
-        map.setZoom(14);
+        map.setZoom(15);
     }
 
     if (filter == "stillSafe"){
         map.addLayer(safe)
         map.flyToBounds(safe.getBounds());
+        map.setZoom(15);
     }
 
     ////////////////////// todo please check this!
     if (filter == "beforeAfter"){
         map.addLayer(notSafeEver)
         map.flyToBounds(notSafeEver.getBounds());
-        map.setZoom(14);
+        map.setZoom(15);
     }
 
     if (filter == "notSafe"){
         map.addLayer(notSafe)
         map.flyToBounds(notSafe.getBounds());
-        map.setZoom(14);
+        map.setZoom(15);
     }
 
     // new map( L.map('the_map').setView(mapOptions.center, mapOptions.zoom)){

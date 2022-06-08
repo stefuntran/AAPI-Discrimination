@@ -6,28 +6,43 @@ body{
   gap: 30px;
 }
 
+
+
+
 header{
   grid-area: header;
   justify-self: center;
-  align-self: center;
-  text-align: center;
+
+  text-align: left;
   font-size: 18px;
+
   
 }
 
-#filter{
-  display: grid;
-  grid-template-columns: .2fr .2fr .2fr .2fr;
-  padding: 3px;
-  text-align: center;
-  
-  
+h1{
+
+
+  font-family: fantasy;
 }
+
+#filter{
+  padding-left: 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: -30px;
+/* 
+  grid-template-columns: .2fr .2fr .2fr .2fr; */
+  padding: 3px;
+
+}
+
+
+
 
 .roundButton{
   border-radius: 5px;
   padding: 5px;
-  margin-left: 5px;
+  margin: 10px;
   text-align: center;
   cursor: pointer;
 }
@@ -39,15 +54,12 @@ header{
     grid-area: footer;
 
   }
-  
-  
 
 /* css for the button */
 #surveyButton{
-  
     
     padding: 15px 32px;
-    margin: 10px;
+    margin: 15px;
     background-color: #b4811c;
     cursor: pointer;
 }
@@ -71,6 +83,9 @@ header{
 #the_map{
   height:90vh;
   grid-area: main_map;
+  border-radius: 25px;
+  border-style:groove;
+  border-color:darkgreen;
   grid-template-columns: .30fr .60fr .15fr;
   grid-template-rows: .80fr .10fr .10fr ;
   /* grid-template-areas: "scrollarea spacing spacing" "scrollarea spacing spacing" "scrollarea spacing chart"  ; */
@@ -115,7 +130,7 @@ gap: 20px;
   grid-row:3;
   z-index: 9999;  
   justify-content: right;
-  margin-bottom: 15px;
+ 
 }
 
 #charty{
@@ -124,7 +139,8 @@ gap: 20px;
   grid-row:2 / span 2;
   /* grid-column:1 /span 2; */
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px;
+
 
 }
 
@@ -153,11 +169,14 @@ font-style: oblique;
 }
 
 .highlightCard{
+ 
   border-color: gold !important;;
   border: 10px solid;
+
 }
 
 #scrollArea {
+  border-radius: 10px;
   display: grid;
   grid-column: 1;
   grid-row: 1 / span 5;
@@ -173,6 +192,9 @@ font-style: oblique;
 }
 
 .defaultCards {
+  border-radius: 10px;
+  text-align: center;
+  
   /* display: grid; */
   /* color: black; */
   color:black;
@@ -186,6 +208,7 @@ font-style: oblique;
 
 .defaultCards .title{
   /* grid-row:1; */
+
   font-size: 1.5em;
   font-weight: bold;
   text-align: center;
@@ -202,18 +225,27 @@ call remove highlight or end cards */
 *:before,
 *:after{
     padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+    margin: 5px;
+
+    box-sizing:border-box;
+
+
 }
 
 
 .active, .collapsible:hover {
-  background-color: #555;
+
+  background-color:rgba(219, 165, 17, 0.97);
+  width: 150px;
+  border-radius: 25px;
+  text-align: center;
+  font-size:20px;
 
 }
-
 .hidden{
   display: none;
+
+
   
 }
 
@@ -252,7 +284,7 @@ call remove highlight or end cards */
     margin: 20px 0;
     line-height: 25px;
 }
-#ohsteven{
+#ohsteven { 
     display: block;
     width: 150px;
     position: relative;
@@ -264,16 +296,60 @@ call remove highlight or end cards */
     padding: 5px 0;
 }
 
+#wel {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: rgb(29, 63, 115);
+  
+}
+#intro{
+  text-align: center;
+}
+
+
+#forms{
+  background-color: rgb(140, 201, 111);
+  border-radius: 25px;
+}
 
 
 
+nav
+{
+	height: 150px;
+	width: 75%;
+	position: absolute;
+	top: 0;
+	right: 2%;
+	text-align: right;
+}
 
+nav ul#main_menu
+{
+    list-style-type: none;
+    position: absolute;
+    bottom: 45px;
+    right: 5%;
+    z-index: 400;
+}
 
+nav ul#main_menu li
+{
+	display: inline;
+}
 
-
-
-
-
+nav ul#main_menu li a
+{
+	padding: 14px 14px;
+	letter-spacing: 0px;
+	text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+	color: #0d2745;
+	font-size: 16px;
+	font-weight: 500;
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+}
 
 
 
