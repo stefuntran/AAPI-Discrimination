@@ -5,8 +5,9 @@
 ## Table of Contents
 * [Objective](#objective)
 * [Who is being empowered?](#who-is-being-empowered)
-* [What technology was used?](#what-technology-was-used?)
-* [How it can be repurposed?](#how-can-it-be-repurposed?)
+* [What technology was used?](#what-technology-was-used)
+* [What technical and ethical problems could there be in developing this tool?](#What-technical-and-ethical-problems-could-there-be-in-developing-this-tool)
+* [How it can be repurposed?](#how-can-it-be-repurposed)
 * [The Mapplication](#the-mapplication)
 
 ## Objective
@@ -29,6 +30,7 @@ Others can use this project in the future by accessing it through various ways s
 ### Features
 1. **Responsive Map**
 
+The map corresponds directly with the scrollbar. As the users scroll to each story, the map will pan to the point that the user story refers to. The user can then click on the marker to read more about th experience.
 
 
 
@@ -37,6 +39,7 @@ Others can use this project in the future by accessing it through various ways s
 
 2. **User Responses + Scrollbar**
 
+The users are able to scroll through users responses in the scrollbar. The scrollbar will highlighted the card that the user is currently using.
 
 
 
@@ -44,6 +47,7 @@ Others can use this project in the future by accessing it through various ways s
 
 3. **Bar Chart**
 
+Located on the bottom right of the map, there is a bar chart visualizing the amount of responses that users chose when filling out the survey. The color of the bar graphs match the colors of the buttons and messages. If users do not want to see the bar graph, they can minimize it by clicking on the "toggle chart". To bring back the graph, users can click the same "toggle chart" and it will show back up. 
 
 
 
@@ -51,7 +55,11 @@ Others can use this project in the future by accessing it through various ways s
 
 4. **Window Pop-Up**
 
+Users entering the website will be greeted with an automatic pop-up welcoming the user and providing some information regarding the website. At the end of the description, users have the option of filling out the survey and then closing the pop-up window by clickng the "X" button to continue to the website, or declining to fill out the survey and click the "X" button to enter. 
 
+5. **Colors**
+
+The colors of the markers on the map, bar chart, and cards corespond to users response to the survey question "How has the incident changed your perception of safety at UCLA?". This helps connect all the applications on our map together.
 
 
 ### Screenshots
