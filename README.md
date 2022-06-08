@@ -6,7 +6,7 @@
 * [Objective](#objective)
 * [Who is being empowered?](#who-is-being-empowered)
 * [What technology was used?](#what-technology-was-used?)
-* [What technical and ethical problems could there be in developing this tool?](#what-technical-and-ethical-problems-could-there-be-in-developing-this-tool?]
+* [What technical and ethical problems could there be in developing this tool?](#what-technical-and-ethical-problems-could-there-be-in-developing-this-tool?)
 * [How it can be repurposed?](#how-can-it-be-repurposed?)
 * [The Mapplication](#the-mapplication)
 
