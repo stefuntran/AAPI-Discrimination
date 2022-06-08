@@ -239,7 +239,7 @@ function addCards(data,filter){
     newCard.style.backgroundColor = data.color;
     newCard.id = "llama_id_"+totalMarkerCount; // gives the button a unique id
     let thisId = newCard.id;
-    newCard.innerHTML = `<div class="title">"${data.feeling}"</div>  <h2>Has covid affected?</h2> <h3>${data.covid}</h3>`; // gives the button a title
+    newCard.innerHTML = `<div class="title">"${data.feeling}"</div>  <h3>Do you think COVID-19 was a motivator?</h3> <h4>${data.covid}</h4>`; // gives the button a title
     newCard.setAttribute("lat",data.lat); // sets the latitude 
     newCard.setAttribute("lng",data.lng); // sets the longitude 
     newCard.setAttribute("feeling",data.perception); // remove card when you click button, 

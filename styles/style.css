@@ -6,7 +6,9 @@ body{
   gap: 30px;
 }
 
-
+h3{
+  font-weight: 300;
+}
 
 
 header{
@@ -19,12 +21,13 @@ header{
   
 }
 
-h1{
+/* h1{
 
 
 
-  font-family: fantasy;
-}
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+} */
 
 #filter{
   padding-left: 15px;
@@ -41,7 +44,7 @@ h1{
 
 #question{
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: larger;
+  font-size: 25px;
   align-self: center;
 
 }
@@ -208,7 +211,7 @@ font-style: oblique;
   
   /* display: grid; */
   /* color: black; */
-  color:black;
+  color:rgb(255, 255, 255);
   grid-column: 1;
   height: 300px;
   padding: 20px;
@@ -220,10 +223,10 @@ font-style: oblique;
 .defaultCards .title{
   /* grid-row:1; */
 
-  font-size: 1.5em;
+  font-size: 20px;
   font-weight: bold;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 20px;
 
 }
 
@@ -325,8 +328,31 @@ call remove highlight or end cards */
 
 
 
+
+
+
+
+pageTitle{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+
+  grid-area: title;
+
+
+}
+pageTitle a{
+  
+  color: black;
+  text-decoration: none;
+} 
+
+img {
+  height: 250px;
+  width: 400px;
+}
+
 nav
 {
+
 	height: 150px;
 	width: 75%;
 	position: absolute;
@@ -342,6 +368,7 @@ nav ul#main_menu
     bottom: 45px;
     right: 5%;
     z-index: 400;
+    text-align: right;
 }
 
 nav ul#main_menu li
@@ -363,6 +390,16 @@ nav ul#main_menu li a
 	z-index: 1;
 }
 
+
+#navBar{
+  margin-bottom: 25px;
+  /* background-color: rgba(113, 201, 183, 0.779); */
+}
+
+
+
+
+
 #logo{
   color:black;
   align-content: left;
@@ -371,8 +408,10 @@ nav ul#main_menu li a
  
 }
 
-
-
+#name{
+  margin-right: 455px;
+  
+}
 
 
 

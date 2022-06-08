@@ -63,3 +63,5 @@ The colors of the markers on the map, bar chart, and cards corespond to users re
 
 
 ### Screenshots
+
+![screenshot](shot.png)
