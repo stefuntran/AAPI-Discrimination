@@ -324,6 +324,7 @@ call remove highlight or end cards */
 
 #forms{
   background-color: rgb(161, 181, 231);
+  color: rgb(161, 181, 231);;
   border-radius: 25px;
 }
 
